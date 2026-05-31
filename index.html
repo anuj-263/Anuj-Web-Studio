@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Anuj Web Studio - Modern web development for startups, small businesses, and creators. Affordable, responsive, and professional websites that drive growth." />
+  <title>Anuj Web Studio | Next‑Gen Digital Craft</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts: Space Grotesk + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #fefefe;
+      color: #121826;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .nav-links a, .btn, .price-tag {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #4f46e5, #a855f7);
+      border-radius: 12px;
+    }
+
+    /* animated gradient mesh background */
+    .mesh-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 30%, rgba(249, 245, 255, 1), rgba(240, 242, 255, 1));
+    }
+    .mesh-bg::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, rgba(168, 85, 247, 0.03) 60%, transparent 80%);
+      animation: slowDrift 24s infinite alternate ease-in-out;
+    }
+    @keyframes slowDrift {
+      0% { transform: translate(0%, 0%) rotate(0deg); }
+      100% { transform: translate(4%, 6%) rotate(2deg); }
+    }
+
+    /* progress bar modern */
+    .progress-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(79, 70, 229, 0.2);
+      z-index: 1000;
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #c084fc, #a855f7);
+      box-shadow: 0 0 8px #a855f7;
+      transition: width 0.08s linear;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* glass header with blur */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.18);
+      transition: all 0.3s;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      flex-wrap: wrap;
+    }
+    .logo-img {
+      display: flex;
+      align-items: center;
+    }
+    .logo-image {
+      height: 68px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.02));
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .logo-image:hover {
+      transform: scale(1.02) rotate(-0.5deg);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 550;
+      color: #1f2937;
+      font-size: 1rem;
+      transition: 0.2s;
+      position: relative;
+    }
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      border-radius: 4px;
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      color: #4f46e5;
+    }
+
+    /* buttons modern */
+    .btn-primary {
+      background: linear-gradient(105deg, #4f46e5, #7c3aed);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 48px;
+      color: white;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 10px 18px -8px rgba(79, 70, 229, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -12px rgba(79, 70, 229, 0.5);
+      background: linear-gradient(105deg, #5b52f0, #8b5cf6);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #4f46e5;
+      color: #4f46e5;
+      padding: 10px 28px;
+      border-radius: 48px;
+      font-weight: 600;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: #4f46e5;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(79,70,229,0.2);
+    }
+
+    /* hero section - asymmetrical grid */
+    .hero {
+      padding: 100px 0 90px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-badge {
+      background: rgba(79, 70, 229, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 6px 18px;
+      border-radius: 60px;
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4f46e5;
+      margin-bottom: 1.6rem;
+      border: 1px solid rgba(79,70,229,0.3);
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      line-height: 1.15;
+      font-weight: 700;
+      background: linear-gradient(145deg, #0a0c1a, #2d2b5e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.2rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #4b5563;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 48px;
+      border: 1px solid rgba(79,70,229,0.2);
+    }
+    .stat-card h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #4f46e5, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-visual {
+      position: relative;
+    }
+    .floating-icon {
+      font-size: 11rem;
+      background: linear-gradient(135deg, #4f46e5, #c084fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 20px 28px rgba(79,70,229,0.2));
+      animation: levitate 5s infinite alternate ease-in-out;
+    }
+    @keyframes levitate {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-15px); }
+    }
+
+    /* section styling */
+    section {
+      padding: 90px 0;
+      position: relative;
+      z-index: 2;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      text-align: center;
+      font-weight: 700;
+      background: linear-gradient(125deg, #121826, #3a3566);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5b6e8c;
+      max-width: 620px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.1rem;
+    }
+
+    /* service cards 3D hover */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.2rem;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      text-align: center;
+    }
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      background: white;
+      box-shadow: 0 28px 40px -20px rgba(79, 70, 229, 0.3);
+      border-color: #a78bfa;
+    }
+    .service-icon {
+      font-size: 2.8rem;
+      background: linear-gradient(145deg, #4f46e5, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    /* features horizontal modern */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .feature-chip {
+      background: #ffffffdd;
+      backdrop-filter: blur(8px);
+      padding: 0.8rem 1.6rem;
+      border-radius: 80px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(79,70,229,0.2);
+      transition: all 0.25s;
+    }
+    .feature-chip i {
+      font-size: 1.4rem;
+      color: #4f46e5;
+    }
+    .feature-chip:hover {
+      transform: translateX(6px);
+      background: white;
+      border-color: #4f46e5;
+    }
+
+    /* projects modern cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid #eef2ff;
+    }
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 35px -18px rgba(0, 0, 0, 0.2);
+      border-color: #b9c2ff;
+    }
+    .project-img {
+      background: linear-gradient(125deg, #4f46e5, #a855f7);
+      padding: 2rem;
+      text-align: center;
+      font-size: 3rem;
+      color: white;
+    }
+
+    /* pricing premium */
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-radius: 3rem;
+      padding: 2.8rem;
+      border: 1px solid rgba(79,70,229,0.3);
+      transition: 0.3s;
+    }
+    .price-tag {
+      font-size: 3.6rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #1e293b, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* contact minimal glass */
+    .contact-card {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      max-width: 650px;
+      margin: 0 auto;
+      border-radius: 2.5rem;
+      padding: 2rem 2.2rem;
+      border: 1px solid rgba(79,70,229,0.2);
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      transition: 0.2s;
+    }
+    .contact-row:hover {
+      transform: translateX(6px);
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: linear-gradient(145deg, #25d366, #128c7e);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      z-index: 100;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      animation: pulse-glow 2s infinite;
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      70% { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 110px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: #1e1e2a;
+      color: white;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+      z-index: 99;
+      backdrop-filter: blur(4px);
+      background: rgba(79,70,229,0.8);
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    footer {
+      background: #0b0e17;
+      color: #a0aec0;
+      text-align: center;
+      padding: 2rem;
+    }
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .hero-content p { max-width: 100%; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { text-align: center; }
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<div class="mesh-bg"></div>
+<div class="progress-indicator"><div class="progress-fill" id="progressFill"></div></div>
+<a href="https://wa.me/918620047290?text=Hello%20Anuj%20Web%20Studio!" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <a href="#home" class="logo-img">
+        <img src="Logo.png" alt="Anuj Web Studio Logo" class="logo-image" />
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Work</a><a href="#why-us">Expertise</a><a href="#pricing">Pricing</a><a href="#contact">Connect</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content fade-up">
+        <div class="hero-badge"><i class="fas fa-bolt"></i> next‑gen web studio</div>
+        <h1>Digital experiences that <span style="background: linear-gradient(125deg,#4f46e5,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">scale ambition</span></h1>
+        <p>Anuj Web Studio crafts future-ready websites for startups, creators & businesses. Lightning fast, immersive, conversion-driven.</p>
+        <div class="hero-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#pricing" class="btn-primary"><i class="fas fa-rocket"></i> Launch project</a>
+          <a href="#contact" class="btn-outline"><i class="fas fa-calendar-alt"></i> Free consult</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card"><h3 id="projectsCount">0+</h3><p>projects live</p></div>
+          <div class="stat-card"><h3 id="satisfactionRate">0%</h3><p>client trust</p></div>
+        </div>
+      </div>
+      <div class="hero-visual fade-up">
+        <i class="fas fa-cube floating-icon"></i>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title fade-up">crafted solutions</h2>
+      <p class="section-sub fade-up">Websites that don't just look premium — they perform</p>
+      <div class="services-grid">
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Business Websites</h3><p>Corporate identity, trust & professionalism.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-chart-simple"></i></div><h3>Startup Landing Pages</h3><p>High conversion, investor ready.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-user-astronaut"></i></div><h3>Portfolio Websites</h3><p>Showcase your creative edge.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-pen-fancy"></i></div><h3>Website Redesign</h3><p>Modern UI/UX overhaul.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-code-branch"></i></div><h3>Frontend Dev</h3><p>Clean, scalable, blazing code.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-mobile-screen"></i></div><h3>Responsive First</h3><p>Flawless on all devices.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" style="background: #fbfaff">
+    <div class="container">
+      <h2 class="section-title fade-up">recent launches</h2>
+      <p class="section-sub fade-up">real solutions, measurable impact</p>
+      <div class="projects-grid">
+        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-children"></i></div><div class="project-content" style="padding:1.5rem"><h3>KidShuttle</h3><p>Smart kids transportation booking system with modern interface.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px; font-size:0.75rem;">startup launch</span></div></div>
+        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-brush"></i></div><div class="project-content" style="padding:1.5rem"><h3>Anuj Portfolio Pro</h3><p>High-end portfolio with micro-interactions and case studies.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">portfolio</span></div></div>
+        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-palette"></i></div><div class="project-content" style="padding:1.5rem"><h3>Creative Agency Redesign</h3><p>Complete brand transformation + 40% more inquiries.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">redesign</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-us">
+    <div class="container">
+      <h2 class="section-title fade-up">why Anuj Web Studio?</h2>
+      <p class="section-sub fade-up">design meets performance & speed</p>
+      <div class="features-grid">
+        <div class="feature-chip fade-up"><i class="fas fa-check-circle"></i> Modern & Premium</div>
+        <div class="feature-chip fade-up"><i class="fas fa-mobile-alt"></i> Fully Responsive</div>
+        <div class="feature-chip fade-up"><i class="fas fa-tachometer-alt"></i> 7‑day turnaround</div>
+        <div class="feature-chip fade-up"><i class="fas fa-rupee-sign"></i> Affordable pricing</div>
+        <div class="feature-chip fade-up"><i class="fas fa-chart-line"></i> SEO‑ready</div>
+        <div class="feature-chip fade-up"><i class="fas fa-headset"></i> Priority support</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container fade-up">
+      <div class="pricing-card">
+        <h3 style="font-size:1.9rem;">Starter Ignite</h3>
+        <div class="price-tag">₹1,999<small style="font-size:1rem;">*</small></div>
+        <p>perfect for lean startups & personal brands</p>
+        <ul style="list-style: none; margin: 2rem 0; text-align: left;">
+          <li><i class="fas fa-check-circle" style="color:#4f46e5;"></i> 1‑page responsive website</li>
+          <li><i class="fas fa-mobile-alt"></i> Mobile-first design</li>
+          <li><i class="fas fa-envelope"></i> Contact form + WhatsApp integration</li>
+          <li><i class="fab fa-whatsapp"></i> Click to chat</li>
+          <li><i class="fas fa-search"></i> Basic SEO setup</li>
+          <li><i class="fas fa-clock"></i> 7 days free support</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">claim this deal <i class="fas fa-arrow-right"></i></a>
+        <div style="margin-top: 1rem; font-size:0.8rem;">*domain & hosting extra</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title fade-up">start a conversation</h2>
+      <p class="section-sub fade-up">let's turn your vision into a digital masterpiece</p>
+      <div class="contact-card fade-up">
+        <div class="contact-row"><i class="fab fa-whatsapp fa-2x" style="color:#25d366;"></i><div><strong>WhatsApp direct</strong><br/><a href="https://wa.me/918620047290" target="_blank">+91 8620047290</a></div></div>
+        <div class="contact-row"><i class="fab fa-instagram fa-2x" style="color:#E4405F;"></i><div><strong>Instagram</strong><br/><a href="https://instagram.com/anujwebstudios" target="_blank">@anujwebstudios</a></div></div>
+        <div class="contact-row"><i class="fas fa-envelope fa-2x" style="color:#4f46e5;"></i><div><strong>Email</strong><br/><a href="mailto:anujwebstudio@gmail.com">anujwebstudio@gmail.com</a></div></div>
+        <div class="contact-row"><i class="fas fa-map-marker-alt fa-2x" style="color:#ef4444;"></i><div><strong>Studio address</strong><br/>p-1/4 Begorkhal Panchanantala, Jote Shibhrampur, Kolkata 700141</div></div>
+        <hr style="margin: 1rem 0; border-color: #eef2ff;">
+        <div><i class="fas fa-clock"></i> response within 2h &nbsp;|&nbsp; <i class="fas fa-laptop-code"></i> 100% satisfaction focus</div>
+        <div style="margin-top: 1rem;"><i class="fas fa-location-dot"></i> by appointment only — let's create magic</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Anuj Web Studio — next‑gen web craftsmanship for fearless brands</p>
+  </div>
+</footer>
+
+<script>
+  // scroll progress bar
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressFill').style.width = scrolled + '%';
+    const backBtn = document.getElementById('backToTopBtn');
+    if (winScroll > 400) backBtn.classList.add('show');
+    else backBtn.classList.remove('show');
+  });
+
+  // Intersection Observer for fade-up
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  fadeElements.forEach(el => obs.observe(el));
+
+  // count animation for stats
+  let counted = false;
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !counted) {
+        counted = true;
+        animateNumber('projectsCount', 0, 5, 800, '+');
+        animateNumber('satisfactionRate', 0, 100, 1000, '%');
+      }
+    });
+  }, { threshold: 0.5 });
+  const statContainer = document.querySelector('.hero-stats');
+  if (statContainer) statsObserver.observe(statContainer);
+  
+  function animateNumber(elementId, start, end, duration, suffix) {
+    const elem = document.getElementById(elementId);
+    if (!elem) return;
+    const range = end - start;
+    const stepTime = 16;
+    const steps = duration / stepTime;
+    const increment = range / steps;
+    let current = start;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= end) {
+        elem.innerText = end + suffix;
+        clearInterval(timer);
+      } else {
+        elem.innerText = Math.floor(current) + suffix;
+      }
+    }, stepTime);
+  }
+
+  // smooth anchor + back to top
+  document.querySelectorAll(".nav-links a, .hero-buttons a, .pricing-card a, .logo-img").forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const hash = this.getAttribute("href");
+      if (hash && hash.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(hash);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+  document.getElementById("backToTopBtn").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // active nav highlight
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-links a");
+  function updateActive() {
+    let current = "";
+    sections.forEach(section => {
+      const top = section.offsetTop - 100;
+      if (scrollY >= top) current = section.getAttribute("id");
+    });
+    navLinks.forEach(link => {
+      link.style.color = "#1f2937";
+      link.style.fontWeight = "500";
+      if (link.getAttribute("href") === `#${current}`) {
+        link.style.color = "#4f46e5";
+        link.style.fontWeight = "600";
+      }
+    });
+  }
+  window.addEventListener("scroll", updateActive);
+  updateActive();
+
+  // 3D tilt effect on service cards (senior dev micro interaction)
+  const serviceCards = document.querySelectorAll(".service-card");
+  serviceCards.forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 18;
+      const rotateY = (centerX - x) / 18;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+    });
+  });
+</script>
+</body>
+</html>
