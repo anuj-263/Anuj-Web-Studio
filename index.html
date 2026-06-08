@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Anuj Web Studio - Modern web development for startups, small businesses, and creators. Affordable, responsive, and professional websites that drive growth." />
-  <title>Anuj Web Studio | Next‑Gen Digital Craft</title>
+  <meta name="description" content="Anuj Web Studio delivers future-ready, high-performance websites for startups, creators, and enterprises. Premium design, affordable price, 100% responsive." />
+  <title>Anuj Web Studio | Digital Craftsmanship</title>
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <!-- Google Fonts: Space Grotesk + Inter -->
+  <!-- Google Fonts: Inter + Space Grotesk -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -16,59 +16,64 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3b35c4;
+      --primary-light: #818cf8;
+      --secondary: #a855f7;
+      --dark: #0f1222;
+      --light-bg: #faf9ff;
+      --glass-white: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(79, 70, 229, 0.2);
+      --shadow-sm: 0 12px 28px -8px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 28px 40px -16px rgba(79, 70, 229, 0.25);
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
     body {
       font-family: "Inter", sans-serif;
       background-color: #fefefe;
-      color: #121826;
+      color: #141b2b;
       line-height: 1.5;
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .nav-links a, .btn, .price-tag {
+    h1, h2, h3, h4, .nav-links a, .btn, .price-tag, .logo-text {
       font-family: "Space Grotesk", sans-serif;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
 
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #4f46e5, #a855f7);
-      border-radius: 12px;
-    }
-
-    /* animated gradient mesh background */
-    .mesh-bg {
+    /* animated gradient background */
+    .orb-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 20% 30%, rgba(249, 245, 255, 1), rgba(240, 242, 255, 1));
+      background: radial-gradient(circle at 30% 10%, rgba(229, 231, 255, 1), rgba(243, 244, 255, 1));
     }
-    .mesh-bg::before {
+    .orb-bg::after {
       content: "";
       position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, rgba(168, 85, 247, 0.03) 60%, transparent 80%);
-      animation: slowDrift 24s infinite alternate ease-in-out;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 70% 40%, rgba(139, 92, 246, 0.08), transparent 60%);
+      animation: drift 20s infinite alternate;
     }
-    @keyframes slowDrift {
-      0% { transform: translate(0%, 0%) rotate(0deg); }
-      100% { transform: translate(4%, 6%) rotate(2deg); }
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+      100% { transform: translate(5%, 3%) scale(1.2); opacity: 0.8; }
     }
 
-    /* progress bar modern */
+    /* custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(145deg, #4f46e5, #a855f7); border-radius: 10px; }
+
+    /* progress bar */
     .progress-indicator {
       position: fixed;
       top: 0;
@@ -76,89 +81,126 @@
       width: 100%;
       height: 4px;
       background: rgba(79, 70, 229, 0.2);
-      z-index: 1000;
+      z-index: 2000;
     }
     .progress-fill {
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #4f46e5, #c084fc, #a855f7);
-      box-shadow: 0 0 8px #a855f7;
-      transition: width 0.08s linear;
+      box-shadow: 0 0 12px #a855f7;
+      transition: width 0.06s linear;
     }
 
-    /* container */
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 32px;
     }
 
-    /* glass header with blur */
+    /* header glass + responsive nav */
     header {
       position: sticky;
       top: 0;
-      z-index: 99;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(79, 70, 229, 0.18);
-      transition: all 0.3s;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+      transition: 0.3s;
     }
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.8rem 0;
-      flex-wrap: wrap;
     }
-    .logo-img {
+    .logo {
       display: flex;
       align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
     .logo-image {
-      height: 68px;
+      height: 52px;
       width: auto;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.02));
-      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+      transition: transform 0.2s ease;
     }
     .logo-image:hover {
-      transform: scale(1.02) rotate(-0.5deg);
+      transform: scale(1.02);
     }
+    .logo-text {
+      font-size: 1.65rem;
+      font-weight: 700;
+      background: linear-gradient(125deg, #1e1f3a, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* desktop nav */
     .nav-links {
       display: flex;
-      gap: 2.2rem;
+      gap: 2rem;
       align-items: center;
     }
     .nav-links a {
       text-decoration: none;
       font-weight: 550;
-      color: #1f2937;
-      font-size: 1rem;
+      color: #1e293b;
       transition: 0.2s;
       position: relative;
+      font-size: 0.98rem;
     }
-    .nav-links a::before {
+    .nav-links a::after {
       content: '';
       position: absolute;
       bottom: -6px;
       left: 0;
       width: 0%;
-      height: 2px;
+      height: 2.5px;
       background: linear-gradient(90deg, #4f46e5, #a855f7);
       border-radius: 4px;
-      transition: width 0.25s ease;
+      transition: width 0.25s;
     }
-    .nav-links a:hover::before {
-      width: 100%;
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #4f46e5; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #1e293b;
+      cursor: pointer;
     }
-    .nav-links a:hover {
-      color: #4f46e5;
+    /* mobile nav */
+    @media (max-width: 860px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 75px);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(32px);
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+        transition: 0.3s ease-in-out;
+        box-shadow: 8px 0 32px rgba(0,0,0,0.1);
+        border-right: 1px solid rgba(79,70,229,0.2);
+        z-index: 1000;
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .container { padding: 0 24px; }
     }
 
-    /* buttons modern */
+    /* buttons */
     .btn-primary {
       background: linear-gradient(105deg, #4f46e5, #7c3aed);
       border: none;
-      padding: 12px 32px;
+      padding: 12px 28px;
       border-radius: 48px;
       color: white;
       font-weight: 600;
@@ -166,19 +208,19 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 10px 18px -8px rgba(79, 70, 229, 0.4);
+      transition: var(--transition);
+      box-shadow: 0 10px 18px -8px rgba(79, 70, 229, 0.5);
     }
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 18px 28px -12px rgba(79, 70, 229, 0.5);
-      background: linear-gradient(105deg, #5b52f0, #8b5cf6);
+      box-shadow: 0 20px 28px -12px rgba(79, 70, 229, 0.6);
+      background: linear-gradient(105deg, #6366f1, #8b5cf6);
     }
     .btn-outline {
       background: transparent;
       border: 2px solid #4f46e5;
       color: #4f46e5;
-      padding: 10px 28px;
+      padding: 10px 26px;
       border-radius: 48px;
       font-weight: 600;
       transition: 0.25s;
@@ -188,48 +230,34 @@
       background: #4f46e5;
       color: white;
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(79,70,229,0.2);
     }
 
-    /* hero section - asymmetrical grid */
-    .hero {
-      padding: 100px 0 90px;
-      position: relative;
-      z-index: 2;
-    }
+    /* hero */
+    .hero { padding: 100px 0 80px; }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
+      grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
     }
     .hero-badge {
       background: rgba(79, 70, 229, 0.12);
-      backdrop-filter: blur(2px);
-      padding: 6px 18px;
-      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      padding: 6px 20px;
+      border-radius: 80px;
       display: inline-block;
-      font-size: 0.85rem;
       font-weight: 600;
       color: #4f46e5;
-      margin-bottom: 1.6rem;
-      border: 1px solid rgba(79,70,229,0.3);
+      margin-bottom: 1.5rem;
     }
     .hero-content h1 {
-      font-size: 4rem;
-      line-height: 1.15;
-      font-weight: 700;
-      background: linear-gradient(145deg, #0a0c1a, #2d2b5e);
+      font-size: 3.8rem;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #0f172a, #4f46e5, #a855f7);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       margin-bottom: 1.2rem;
-    }
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #4b5563;
-      margin-bottom: 2rem;
-      max-width: 90%;
     }
     .hero-stats {
       display: flex;
@@ -237,187 +265,135 @@
       margin-top: 2rem;
     }
     .stat-card {
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(8px);
-      padding: 0.6rem 1.2rem;
-      border-radius: 48px;
-      border: 1px solid rgba(79,70,229,0.2);
+      background: var(--glass-white);
+      backdrop-filter: blur(12px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 56px;
+      border: 1px solid var(--glass-border);
     }
-    .stat-card h3 {
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(145deg, #4f46e5, #a855f7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .stat-card h3 { font-size: 2rem; background: linear-gradient(145deg, #4f46e5, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero-visual {
-      position: relative;
+      background: rgba(255,255,255,0.4);
+      border-radius: 48px;
+      backdrop-filter: blur(8px);
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.8);
+      animation: float 6s infinite alternate;
     }
-    .floating-icon {
-      font-size: 11rem;
-      background: linear-gradient(135deg, #4f46e5, #c084fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 20px 28px rgba(79,70,229,0.2));
-      animation: levitate 5s infinite alternate ease-in-out;
-    }
-    @keyframes levitate {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-15px); }
+    @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-18px); } }
+    .code-window {
+      background: #0f172a;
+      border-radius: 28px;
+      padding: 1.5rem;
+      text-align: left;
+      color: #cbd5e1;
+      font-family: monospace;
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
     }
 
-    /* section styling */
-    section {
-      padding: 90px 0;
-      position: relative;
-      z-index: 2;
-    }
+    /* sections */
+    section { padding: 90px 0; position: relative; z-index: 2; }
     .section-title {
       font-size: 2.8rem;
       text-align: center;
-      font-weight: 700;
-      background: linear-gradient(125deg, #121826, #3a3566);
+      background: linear-gradient(125deg, #111827, #4f46e5);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.02em;
       margin-bottom: 1rem;
     }
-    .section-sub {
-      text-align: center;
-      color: #5b6e8c;
-      max-width: 620px;
-      margin: 0 auto 3rem auto;
-      font-size: 1.1rem;
-    }
+    .section-sub { text-align: center; color: #5b6e8c; max-width: 620px; margin: 0 auto 3rem auto; font-size: 1.1rem; }
 
-    /* service cards 3D hover */
+    /* service cards */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.2rem;
+      gap: 2rem;
     }
     .service-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
       border-radius: 2rem;
       padding: 2rem 1.5rem;
-      border: 1px solid rgba(79, 70, 229, 0.2);
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      border: 1px solid var(--glass-border);
+      transition: var(--transition);
       text-align: center;
     }
     .service-card:hover {
-      transform: translateY(-12px) scale(1.02);
+      transform: translateY(-10px) scale(1.02);
       background: white;
-      box-shadow: 0 28px 40px -20px rgba(79, 70, 229, 0.3);
+      box-shadow: var(--shadow-hover);
       border-color: #a78bfa;
     }
-    .service-icon {
-      font-size: 2.8rem;
-      background: linear-gradient(145deg, #4f46e5, #a78bfa);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-    }
+    .service-icon { font-size: 2.8rem; background: linear-gradient(145deg, #4f46e5, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1.2rem; }
 
-    /* features horizontal modern */
-    .features-grid {
+    /* testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.8rem;
+      border: 1px solid #eef2ff;
+      transition: 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .stars { color: #fbbf24; margin: 0.8rem 0; }
+
+    /* pricing double */
+    .pricing-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-    }
-    .feature-chip {
-      background: #ffffffdd;
-      backdrop-filter: blur(8px);
-      padding: 0.8rem 1.6rem;
-      border-radius: 80px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 500;
-      border: 1px solid rgba(79,70,229,0.2);
-      transition: all 0.25s;
-    }
-    .feature-chip i {
-      font-size: 1.4rem;
-      color: #4f46e5;
-    }
-    .feature-chip:hover {
-      transform: translateX(6px);
-      background: white;
-      border-color: #4f46e5;
-    }
-
-    /* projects modern cards */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 2rem;
     }
-    .project-card {
-      background: white;
-      border-radius: 2rem;
-      overflow: hidden;
-      transition: 0.3s;
-      border: 1px solid #eef2ff;
-    }
-    .project-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 25px 35px -18px rgba(0, 0, 0, 0.2);
-      border-color: #b9c2ff;
-    }
-    .project-img {
-      background: linear-gradient(125deg, #4f46e5, #a855f7);
-      padding: 2rem;
-      text-align: center;
-      font-size: 3rem;
-      color: white;
-    }
-
-    /* pricing premium */
     .pricing-card {
-      max-width: 560px;
-      margin: 0 auto;
+      flex: 1;
+      min-width: 280px;
       background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(10px);
-      border-radius: 3rem;
-      padding: 2.8rem;
-      border: 1px solid rgba(79,70,229,0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--glass-border);
       transition: 0.3s;
     }
-    .price-tag {
-      font-size: 3.6rem;
-      font-weight: 800;
-      background: linear-gradient(145deg, #1e293b, #4f46e5);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .pricing-card.featured {
+      border-color: #4f46e5;
+      box-shadow: 0 20px 30px -12px rgba(79,70,229,0.3);
+      background: white;
     }
+    .price-tag { font-size: 3.2rem; font-weight: 800; background: linear-gradient(145deg, #1e293b, #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pricing-card ul { list-style: none; margin: 2rem 0; text-align: left; }
+    .pricing-card li { margin: 0.8rem 0; display: flex; align-items: center; gap: 10px; }
 
-    /* contact minimal glass */
-    .contact-card {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(12px);
-      max-width: 650px;
-      margin: 0 auto;
-      border-radius: 2.5rem;
-      padding: 2rem 2.2rem;
-      border: 1px solid rgba(79,70,229,0.2);
+    /* contact double column */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--glass-border);
     }
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 1.5rem;
-      transition: 0.2s;
+    .contact-info-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 48px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      margin-bottom: 1rem;
+      font-family: inherit;
     }
-    .contact-row:hover {
-      transform: translateX(6px);
-    }
+    .contact-form textarea { border-radius: 28px; resize: vertical; }
     .whatsapp-float {
       position: fixed;
       bottom: 28px;
@@ -431,23 +407,18 @@
       justify-content: center;
       font-size: 32px;
       color: white;
-      z-index: 100;
+      z-index: 1000;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: 0.3s;
-      animation: pulse-glow 2s infinite;
+      animation: pulse 2s infinite;
     }
-    @keyframes pulse-glow {
-      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
-      70% { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
-      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-    }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); } 70% { box-shadow: 0 0 0 12px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
     .back-to-top {
       position: fixed;
       bottom: 110px;
       right: 32px;
-      width: 48px;
-      height: 48px;
-      background: #1e1e2a;
+      width: 46px;
+      height: 46px;
+      background: #4f46e5;
       color: white;
       border-radius: 60px;
       display: flex;
@@ -458,39 +429,29 @@
       visibility: hidden;
       transition: 0.2s;
       z-index: 99;
-      backdrop-filter: blur(4px);
-      background: rgba(79,70,229,0.8);
     }
-    .back-to-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    footer {
-      background: #0b0e17;
-      color: #a0aec0;
-      text-align: center;
-      padding: 2rem;
-    }
-    @media (max-width: 880px) {
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    footer { background: #0b0e17; color: #a0aec0; text-align: center; padding: 2.5rem; margin-top: 2rem; }
+
+    /* fade up */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .hero-content h1 { font-size: 2.5rem; }
-      .hero-content p { max-width: 100%; }
       .hero-stats { justify-content: center; }
-      .hero-visual { text-align: center; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .section-title { font-size: 2.2rem; }
+      .hero-content h1 { font-size: 2.4rem; }
     }
-    .fade-up {
-      opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 560px) {
+      .container { padding: 0 20px; }
+      .btn-primary, .btn-outline { padding: 10px 20px; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
-<div class="mesh-bg"></div>
+<div class="orb-bg"></div>
 <div class="progress-indicator"><div class="progress-fill" id="progressFill"></div></div>
 <a href="https://wa.me/918620047290?text=Hello%20Anuj%20Web%20Studio!" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <div class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up"></i></div>
@@ -498,11 +459,13 @@
 <header>
   <div class="container">
     <div class="navbar">
-      <a href="#home" class="logo-img">
-        <img src="Logo.png" alt="Anuj Web Studio Logo" class="logo-image" />
+      <a href="#home" class="logo">
+        <img src="Logo1.png" alt="Anuj Web Studio Logo" class="logo-image" />
+        <span class="logo-text">Anuj Studio</span>
       </a>
-      <div class="nav-links">
-        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Work</a><a href="#why-us">Expertise</a><a href="#pricing">Pricing</a><a href="#contact">Connect</a>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Work</a><a href="#testimonials">Reviews</a><a href="#pricing">Pricing</a><a href="#contact">Connect</a>
       </div>
     </div>
   </div>
@@ -512,11 +475,11 @@
   <section id="home" class="hero">
     <div class="container hero-grid">
       <div class="hero-content fade-up">
-        <div class="hero-badge"><i class="fas fa-bolt"></i> next‑gen web studio</div>
-        <h1>Digital experiences that <span style="background: linear-gradient(125deg,#4f46e5,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">scale ambition</span></h1>
-        <p>Anuj Web Studio crafts future-ready websites for startups, creators & businesses. Lightning fast, immersive, conversion-driven.</p>
+        <div class="hero-badge"><i class="fas fa-crown"></i> elite web craftsmanship</div>
+        <h1>Digital experiences that <span style="background: linear-gradient(125deg,#4f46e5,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">ignite growth</span></h1>
+        <p>Modern, lightning-fast websites for startups & brands. We blend art & code to build unforgettable web presence.</p>
         <div class="hero-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#pricing" class="btn-primary"><i class="fas fa-rocket"></i> Launch project</a>
+          <a href="#pricing" class="btn-primary"><i class="fas fa-rocket"></i> Start project</a>
           <a href="#contact" class="btn-outline"><i class="fas fa-calendar-alt"></i> Free consult</a>
         </div>
         <div class="hero-stats">
@@ -525,98 +488,126 @@
         </div>
       </div>
       <div class="hero-visual fade-up">
-        <i class="fas fa-cube floating-icon"></i>
+        <div class="code-window">
+          <i class="fas fa-code"></i> &lt;AnujWeb /&gt;<br/>
+          <span style="color:#4f46e5;">.studio</span> { <span style="color:#a855f7;">innovation</span>: infinite; }<br/>
+          ✦ 99.9% uptime ✦
+        </div>
       </div>
     </div>
   </section>
 
   <section id="services">
     <div class="container">
-      <h2 class="section-title fade-up">crafted solutions</h2>
-      <p class="section-sub fade-up">Websites that don't just look premium — they perform</p>
+      <h2 class="section-title fade-up">premium solutions</h2>
+      <p class="section-sub fade-up">crafted to elevate your digital identity</p>
       <div class="services-grid">
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Business Websites</h3><p>Corporate identity, trust & professionalism.</p></div>
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-chart-simple"></i></div><h3>Startup Landing Pages</h3><p>High conversion, investor ready.</p></div>
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-user-astronaut"></i></div><h3>Portfolio Websites</h3><p>Showcase your creative edge.</p></div>
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-pen-fancy"></i></div><h3>Website Redesign</h3><p>Modern UI/UX overhaul.</p></div>
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-code-branch"></i></div><h3>Frontend Dev</h3><p>Clean, scalable, blazing code.</p></div>
-        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-mobile-screen"></i></div><h3>Responsive First</h3><p>Flawless on all devices.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Business Websites</h3><p>Enterprise-grade, trust-building platforms.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h3>Startup Launchers</h3><p>High-conversion, investor-ready landings.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-palette"></i></div><h3>Creative Portfolios</h3><p>Showcase your uniqueness with style.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-mobile-alt"></i></div><h3>Responsive First</h3><p>Flawless across all devices.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="projects" style="background: #fbfaff">
+  <section id="projects" style="background: #ffffffaa;">
     <div class="container">
       <h2 class="section-title fade-up">recent launches</h2>
-      <p class="section-sub fade-up">real solutions, measurable impact</p>
-      <div class="projects-grid">
-        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-children"></i></div><div class="project-content" style="padding:1.5rem"><h3>KidShuttle</h3><p>Smart kids transportation booking system with modern interface.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px; font-size:0.75rem;">startup launch</span></div></div>
-        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-brush"></i></div><div class="project-content" style="padding:1.5rem"><h3>Anuj Portfolio Pro</h3><p>High-end portfolio with micro-interactions and case studies.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">portfolio</span></div></div>
-        <div class="project-card fade-up"><div class="project-img"><i class="fas fa-palette"></i></div><div class="project-content" style="padding:1.5rem"><h3>Creative Agency Redesign</h3><p>Complete brand transformation + 40% more inquiries.</p><span class="project-tag" style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">redesign</span></div></div>
+      <p class="section-sub fade-up">real impact, measurable results</p>
+      <div class="services-grid">
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-bus"></i></div><h3>KidShuttle</h3><p>Smart transport booking system + parent dashboard.</p><span style="background:#e0e7ff; padding:4px 12px; border-radius:40px; font-size:0.75rem;">startup</span></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-gavel"></i></div><h3>Shastrarth Circle</h3><p>Official platform for debate & discourse community. Modern membership portal.</p><span style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">launch 2025</span></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-briefcase"></i></div><h3>V&P Associates</h3><p>Corporate website for legal & consultancy firm, client-centric interface.</p><span style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">enterprise</span></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-brush"></i></div><h3>Anuj Portfolio Pro</h3><p>Immersive micro-interactions & case studies.</p><span style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">creative</span></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-building"></i></div><h3>Agency Redesign</h3><p>Conversion +63% after brand transformation.</p><span style="background:#e0e7ff; padding:4px 12px; border-radius:40px;">redesign</span></div>
       </div>
     </div>
   </section>
 
-  <section id="why-us">
+  <section id="testimonials">
     <div class="container">
-      <h2 class="section-title fade-up">why Anuj Web Studio?</h2>
-      <p class="section-sub fade-up">design meets performance & speed</p>
-      <div class="features-grid">
-        <div class="feature-chip fade-up"><i class="fas fa-check-circle"></i> Modern & Premium</div>
-        <div class="feature-chip fade-up"><i class="fas fa-mobile-alt"></i> Fully Responsive</div>
-        <div class="feature-chip fade-up"><i class="fas fa-tachometer-alt"></i> 7‑day turnaround</div>
-        <div class="feature-chip fade-up"><i class="fas fa-rupee-sign"></i> Affordable pricing</div>
-        <div class="feature-chip fade-up"><i class="fas fa-chart-line"></i> SEO‑ready</div>
-        <div class="feature-chip fade-up"><i class="fas fa-headset"></i> Priority support</div>
+      <h2 class="section-title fade-up">what clients say</h2>
+      <p class="section-sub fade-up">trusted by founders & enterprises</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>“Anuj Web Studio delivered a stunning, high-performance website for Shastrarth Circle. The attention to detail and speed is unmatched. Our community engagement grew 3x within weeks.”</p>
+          <h4>— Rishikesh Shaw</h4>
+          <small>Co-founder, Shastrarth Circle</small>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>“Exceptional craftsmanship and clear communication. They built a modern platform that reflects our vision perfectly. Highly recommend for any serious brand.”</p>
+          <h4>— Prem Pratap</h4>
+          <small>Co-founder, Shastrarth Circle</small>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <p>“V&P Associates’ new website is sleek, professional, and drives real client inquiries. The team’s proactive support made the entire process effortless.”</p>
+          <h4>— V&P Associates</h4>
+          <small>Partner, V&P Associates</small>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="pricing">
-    <div class="container fade-up">
-      <div class="pricing-card">
-        <h3 style="font-size:1.9rem;">Starter Ignite</h3>
-        <div class="price-tag">₹1,999<small style="font-size:1rem;">*</small></div>
-        <p>perfect for lean startups & personal brands</p>
-        <ul style="list-style: none; margin: 2rem 0; text-align: left;">
-          <li><i class="fas fa-check-circle" style="color:#4f46e5;"></i> 1‑page responsive website</li>
-          <li><i class="fas fa-mobile-alt"></i> Mobile-first design</li>
-          <li><i class="fas fa-envelope"></i> Contact form + WhatsApp integration</li>
-          <li><i class="fab fa-whatsapp"></i> Click to chat</li>
-          <li><i class="fas fa-search"></i> Basic SEO setup</li>
-          <li><i class="fas fa-clock"></i> 7 days free support</li>
-        </ul>
-        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">claim this deal <i class="fas fa-arrow-right"></i></a>
-        <div style="margin-top: 1rem; font-size:0.8rem;">*domain & hosting extra</div>
+    <div class="container">
+      <h2 class="section-title fade-up">invest wisely</h2>
+      <p class="section-sub fade-up">affordable excellence, transparent pricing</p>
+      <div class="pricing-grid">
+        <div class="pricing-card fade-up">
+          <h3>Starter Ignite</h3>
+          <div class="price-tag">₹1,999<small style="font-size:1rem;">*</small></div>
+          <p>Ideal for solo entrepreneurs & personal brands</p>
+          <ul><li><i class="fas fa-check-circle" style="color:#4f46e5;"></i> 1-Page responsive site</li><li><i class="fas fa-mobile-alt"></i> Mobile-optimized</li><li><i class="fab fa-whatsapp"></i> WhatsApp integration</li><li><i class="fas fa-search"></i> Basic SEO setup</li><li><i class="fas fa-clock"></i> 7-day free support</li></ul>
+          <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">get started</a>
+        </div>
+        <div class="pricing-card featured fade-up">
+          <h3>Business Pro <i class="fas fa-crown" style="color:#f59e0b;"></i></h3>
+          <div class="price-tag">₹5,999<small style="font-size:1rem;">*</small></div>
+          <p>Full-scale solution for agencies & high-growth brands</p>
+          <ul><li><i class="fas fa-check-circle"></i> Up to 5 pages + CMS</li><li><i class="fas fa-chart-simple"></i> Advanced SEO & analytics</li><li><i class="fas fa-tachometer-alt"></i> Performance optimization</li><li><i class="fas fa-headset"></i> 30 days priority support</li><li><i class="fas fa-laptop-code"></i> Custom animations</li></ul>
+          <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">scale now</a>
+        </div>
       </div>
+      <div class="fade-up" style="text-align:center; margin-top: 2rem; font-size:0.8rem;">*domain & hosting additional</div>
     </div>
   </section>
 
   <section id="contact">
     <div class="container">
-      <h2 class="section-title fade-up">start a conversation</h2>
-      <p class="section-sub fade-up">let's turn your vision into a digital masterpiece</p>
-      <div class="contact-card fade-up">
-        <div class="contact-row"><i class="fab fa-whatsapp fa-2x" style="color:#25d366;"></i><div><strong>WhatsApp direct</strong><br/><a href="https://wa.me/918620047290" target="_blank">+91 8620047290</a></div></div>
-        <div class="contact-row"><i class="fab fa-instagram fa-2x" style="color:#E4405F;"></i><div><strong>Instagram</strong><br/><a href="https://instagram.com/anujwebstudios" target="_blank">@anujwebstudios</a></div></div>
-        <div class="contact-row"><i class="fas fa-envelope fa-2x" style="color:#4f46e5;"></i><div><strong>Email</strong><br/><a href="mailto:anujwebstudio@gmail.com">anujwebstudio@gmail.com</a></div></div>
-        <div class="contact-row"><i class="fas fa-map-marker-alt fa-2x" style="color:#ef4444;"></i><div><strong>Studio address</strong><br/>p-1/4 Begorkhal Panchanantala, Jote Shibhrampur, Kolkata 700141</div></div>
-        <hr style="margin: 1rem 0; border-color: #eef2ff;">
-        <div><i class="fas fa-clock"></i> response within 2h &nbsp;|&nbsp; <i class="fas fa-laptop-code"></i> 100% satisfaction focus</div>
-        <div style="margin-top: 1rem;"><i class="fas fa-location-dot"></i> by appointment only — let's create magic</div>
+      <h2 class="section-title fade-up">craft your vision</h2>
+      <p class="section-sub fade-up">let's build something extraordinary</p>
+      <div class="contact-wrapper fade-up">
+        <div>
+          <div class="contact-info-row"><i class="fab fa-whatsapp fa-2x" style="color:#25d366;"></i><div><strong>WhatsApp</strong><br/><a href="https://wa.me/918620047290" target="_blank">+91 8620047290</a></div></div>
+          <div class="contact-info-row"><i class="fab fa-instagram fa-2x" style="color:#E4405F;"></i><div><strong>Instagram</strong><br/><a href="https://instagram.com/anujwebstudios" target="_blank">@anujwebstudios</a></div></div>
+          <div class="contact-info-row"><i class="fas fa-envelope fa-2x" style="color:#4f46e5;"></i><div><strong>Email</strong><br/><a href="mailto:anujwebstudio@gmail.com">anujwebstudio@gmail.com</a></div></div>
+          <div class="contact-info-row"><i class="fas fa-map-marker-alt fa-2x" style="color:#ef4444;"></i><div><strong>Studio</strong><br/>P-1/4 Begorkhal, Kolkata 700141</div></div>
+          <hr style="margin: 1.2rem 0;">
+          <div><i class="fas fa-clock"></i> response within 2h | <i class="fas fa-shield-alt"></i> 100% satisfaction</div>
+        </div>
+        <div class="contact-form">
+          <form id="demoForm">
+            <input type="text" placeholder="Full name" id="nameField" required>
+            <input type="email" placeholder="Email address" id="emailField" required>
+            <textarea rows="3" placeholder="Tell us about your project..." id="msgField"></textarea>
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-paper-plane"></i> Send message</button>
+          </form>
+          <div id="formFeedback" style="margin-top: 12px; font-size: 0.85rem; text-align:center;"></div>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container">
-    <p>© 2026 Anuj Web Studio — next‑gen web craftsmanship for fearless brands</p>
-  </div>
+  <p>© 2026 Anuj Web Studio — next‑gen digital craft. Built with <i class="fas fa-heart" style="color:#a855f7;"></i> for fearless brands.</p>
 </footer>
 
 <script>
-  // scroll progress bar
+  // Progress bar
   window.addEventListener('scroll', () => {
     const winScroll = document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - window.innerHeight;
@@ -627,16 +618,15 @@
     else backBtn.classList.remove('show');
   });
 
-  // Intersection Observer for fade-up
-  const fadeElements = document.querySelectorAll('.fade-up');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.12 });
-  fadeElements.forEach(el => obs.observe(el));
+  // fade-up observer
+  const faders = document.querySelectorAll('.fade-up');
+  const appearOptions = { threshold: 0.1 };
+  const appearOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, appearOptions);
+  faders.forEach(el => appearOnScroll.observe(el));
 
-  // count animation for stats
+  // stat counter - projects live set to 5+
   let counted = false;
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -649,7 +639,6 @@
   }, { threshold: 0.5 });
   const statContainer = document.querySelector('.hero-stats');
   if (statContainer) statsObserver.observe(statContainer);
-  
   function animateNumber(elementId, start, end, duration, suffix) {
     const elem = document.getElementById(elementId);
     if (!elem) return;
@@ -660,41 +649,44 @@
     let current = start;
     const timer = setInterval(() => {
       current += increment;
-      if (current >= end) {
-        elem.innerText = end + suffix;
-        clearInterval(timer);
-      } else {
-        elem.innerText = Math.floor(current) + suffix;
-      }
+      if (current >= end) { elem.innerText = end + suffix; clearInterval(timer); }
+      else { elem.innerText = Math.floor(current) + suffix; }
     }, stepTime);
   }
 
-  // smooth anchor + back to top
-  document.querySelectorAll(".nav-links a, .hero-buttons a, .pricing-card a, .logo-img").forEach(anchor => {
+  // smooth anchor + mobile nav close
+  document.querySelectorAll(".nav-links a, .logo, .hero-buttons a, .pricing-card a").forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       const hash = this.getAttribute("href");
       if (hash && hash.startsWith("#")) {
         e.preventDefault();
         const target = document.querySelector(hash);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        const nav = document.getElementById('navLinks');
+        if (nav.classList.contains('active')) nav.classList.remove('active');
       }
     });
   });
-  document.getElementById("backToTopBtn").addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  document.getElementById("backToTopBtn").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  // mobile menu toggle
+  const toggleBtn = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navLinks');
+  if(toggleBtn) {
+    toggleBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+  }
 
   // active nav highlight
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const navLinkItems = document.querySelectorAll(".nav-links a");
   function updateActive() {
     let current = "";
     sections.forEach(section => {
       const top = section.offsetTop - 100;
       if (scrollY >= top) current = section.getAttribute("id");
     });
-    navLinks.forEach(link => {
-      link.style.color = "#1f2937";
+    navLinkItems.forEach(link => {
+      link.style.color = "#1e293b";
       link.style.fontWeight = "500";
       if (link.getAttribute("href") === `#${current}`) {
         link.style.color = "#4f46e5";
@@ -705,23 +697,36 @@
   window.addEventListener("scroll", updateActive);
   updateActive();
 
-  // 3D tilt effect on service cards (senior dev micro interaction)
-  const serviceCards = document.querySelectorAll(".service-card");
-  serviceCards.forEach(card => {
+  // tilt effect on service cards
+  const tiltCards = document.querySelectorAll(".service-card");
+  tiltCards.forEach(card => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) / 18;
-      const rotateY = (centerX - x) / 18;
+      const x = e.clientX - rect.left, y = e.clientY - rect.top;
+      const centerX = rect.width/2, centerY = rect.height/2;
+      const rotateX = (y - centerY) / 20, rotateY = (centerX - x) / 20;
       card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
     });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-    });
+    card.addEventListener("mouseleave", () => card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)");
   });
+
+  // contact form simulation
+  const contactForm = document.getElementById('demoForm');
+  if(contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nameField').value.trim();
+      const email = document.getElementById('emailField').value.trim();
+      const msg = document.getElementById('msgField').value.trim();
+      if(!name || !email) {
+        document.getElementById('formFeedback').innerHTML = '<span style="color:#e11d48;">⚠️ Please fill name and email.</span>';
+        return;
+      }
+      document.getElementById('formFeedback').innerHTML = '<span style="color:#10b981;">✨ Thank you! Our team will reach out soon.</span>';
+      contactForm.reset();
+      setTimeout(() => document.getElementById('formFeedback').innerHTML = '', 4000);
+    });
+  }
 </script>
 </body>
 </html>
