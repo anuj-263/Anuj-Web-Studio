@@ -372,7 +372,7 @@
     .pricing-card ul { list-style: none; margin: 2rem 0; text-align: left; }
     .pricing-card li { margin: 0.8rem 0; display: flex; align-items: center; gap: 10px; }
 
-    /* contact double column */
+    /* contact double column - modern glass card */
     .contact-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -382,18 +382,74 @@
       border-radius: 2rem;
       padding: 2rem;
       border: 1px solid var(--glass-border);
+      transition: all 0.2s;
     }
     .contact-info-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .contact-form input, .contact-form textarea {
+    
+    /* Premium WhatsApp form styling */
+    .contact-form {
+      position: relative;
+    }
+    .wa-input, .wa-textarea {
       width: 100%;
-      padding: 14px 18px;
+      padding: 14px 20px;
       border-radius: 48px;
       border: 1px solid #e2e8f0;
       background: white;
-      margin-bottom: 1rem;
-      font-family: inherit;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      margin-bottom: 1.2rem;
+      outline: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }
-    .contact-form textarea { border-radius: 28px; resize: vertical; }
+    .wa-textarea {
+      border-radius: 28px;
+      resize: vertical;
+      min-height: 110px;
+    }
+    .wa-input:focus, .wa-textarea:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+      transform: translateY(-1px);
+    }
+    .wa-gradient-btn {
+      width: 100%;
+      justify-content: center;
+      background: linear-gradient(105deg, #4f46e5, #c084fc);
+      font-size: 1rem;
+      letter-spacing: -0.2px;
+      padding: 14px 20px;
+      gap: 12px;
+      transition: all 0.25s ease;
+    }
+    .wa-gradient-btn i {
+      font-size: 1.2rem;
+    }
+    .wa-gradient-btn:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(105deg, #6366f1, #d946ef);
+      box-shadow: 0 18px 28px -12px rgba(79, 70, 229, 0.6);
+    }
+    #waFeedback {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      text-align: center;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .error-feedback {
+      color: #e11d48;
+      background: rgba(225, 29, 72, 0.08);
+      padding: 8px;
+      border-radius: 40px;
+    }
+    .success-feedback {
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      padding: 8px;
+      border-radius: 40px;
+    }
     .whatsapp-float {
       position: fixed;
       bottom: 28px;
@@ -447,6 +503,7 @@
     @media (max-width: 560px) {
       .container { padding: 0 20px; }
       .btn-primary, .btn-outline { padding: 10px 20px; font-size: 0.9rem; }
+      .wa-gradient-btn { font-size: 0.85rem; padding: 12px 16px; }
     }
   </style>
 </head>
@@ -588,14 +645,16 @@
           <hr style="margin: 1.2rem 0;">
           <div><i class="fas fa-clock"></i> response within 2h | <i class="fas fa-shield-alt"></i> 100% satisfaction</div>
         </div>
+        
+        <!-- MODERN WHATSAPP INTEGRATED FORM (no dropdowns, no phone field) -->
         <div class="contact-form">
-          <form id="demoForm">
-            <input type="text" placeholder="Full name" id="nameField" required>
-            <input type="email" placeholder="Email address" id="emailField" required>
-            <textarea rows="3" placeholder="Tell us about your project..." id="msgField"></textarea>
-            <button type="submit" class="btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-paper-plane"></i> Send message</button>
+          <form id="whatsappInquiryForm">
+            <input type="text" id="fullName" class="wa-input" placeholder="Full Name *" required>
+            <input type="email" id="emailAddress" class="wa-input" placeholder="Email Address *" required>
+            <textarea id="projectDetails" class="wa-textarea" rows="4" placeholder="Project Details / Message *" required></textarea>
+            <button type="submit" class="btn-primary wa-gradient-btn"><i class="fab fa-whatsapp"></i> Send Message on WhatsApp</button>
+            <div id="waFeedback"></div>
           </form>
-          <div id="formFeedback" style="margin-top: 12px; font-size: 0.85rem; text-align:center;"></div>
         </div>
       </div>
     </div>
@@ -612,7 +671,8 @@
     const winScroll = document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = (winScroll / height) * 100;
-    document.getElementById('progressFill').style.width = scrolled + '%';
+    const progressFill = document.getElementById('progressFill');
+    if(progressFill) progressFill.style.width = scrolled + '%';
     const backBtn = document.getElementById('backToTopBtn');
     if (winScroll > 400) backBtn.classList.add('show');
     else backBtn.classList.remove('show');
@@ -626,7 +686,7 @@
   }, appearOptions);
   faders.forEach(el => appearOnScroll.observe(el));
 
-  // stat counter - projects live set to 5+
+  // stat counter
   let counted = false;
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -663,7 +723,7 @@
         const target = document.querySelector(hash);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         const nav = document.getElementById('navLinks');
-        if (nav.classList.contains('active')) nav.classList.remove('active');
+        if (nav && nav.classList.contains('active')) nav.classList.remove('active');
       }
     });
   });
@@ -697,7 +757,7 @@
   window.addEventListener("scroll", updateActive);
   updateActive();
 
-  // tilt effect on service cards
+  // tilt effect on service cards (kept for interactivity)
   const tiltCards = document.querySelectorAll(".service-card");
   tiltCards.forEach(card => {
     card.addEventListener("mousemove", (e) => {
@@ -710,23 +770,64 @@
     card.addEventListener("mouseleave", () => card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)");
   });
 
-  // contact form simulation
-  const contactForm = document.getElementById('demoForm');
-  if(contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('nameField').value.trim();
-      const email = document.getElementById('emailField').value.trim();
-      const msg = document.getElementById('msgField').value.trim();
-      if(!name || !email) {
-        document.getElementById('formFeedback').innerHTML = '<span style="color:#e11d48;">⚠️ Please fill name and email.</span>';
-        return;
-      }
-      document.getElementById('formFeedback').innerHTML = '<span style="color:#10b981;">✨ Thank you! Our team will reach out soon.</span>';
-      contactForm.reset();
-      setTimeout(() => document.getElementById('formFeedback').innerHTML = '', 4000);
-    });
+  // ========== MODERN WHATSAPP INTEGRATION (NO DROPDOWNS, NO PHONE FIELD) ==========
+  const waForm = document.getElementById('whatsappInquiryForm');
+  const feedbackDiv = document.getElementById('waFeedback');
+  const WHATSAPP_NUMBER = '918620047290'; // same as global whatsapp
+
+  function validateEmail(email) {
+    return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email);
   }
+
+  waForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('emailAddress').value.trim();
+    const message = document.getElementById('projectDetails').value.trim();
+
+    // Validation
+    if (!name) {
+      feedbackDiv.innerHTML = '<span class="error-feedback"><i class="fas fa-exclamation-circle"></i> Please enter your full name.</span>';
+      return;
+    }
+    if (!email) {
+      feedbackDiv.innerHTML = '<span class="error-feedback"><i class="fas fa-exclamation-circle"></i> Email address is required.</span>';
+      return;
+    }
+    if (!validateEmail(email)) {
+      feedbackDiv.innerHTML = '<span class="error-feedback"><i class="fas fa-envelope"></i> Enter a valid email address (e.g., name@domain.com).</span>';
+      return;
+    }
+    if (!message) {
+      feedbackDiv.innerHTML = '<span class="error-feedback"><i class="fas fa-comment"></i> Please share your project details or message.</span>';
+      return;
+    }
+
+    // Build formatted message exactly as requested
+    const waMessage = `Hello Anuj Web Studio! I am ${name}. My email is ${email}. Project details: ${message}`;
+    const encodedMessage = encodeURIComponent(waMessage);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+    // show temporary success hint before redirect
+    feedbackDiv.innerHTML = '<span class="success-feedback"><i class="fab fa-whatsapp"></i> Redirecting to WhatsApp ...</span>';
+    
+    // open WhatsApp (web or native app)
+    window.open(whatsappUrl, '_blank');
+    
+    // optional reset after a short delay
+    setTimeout(() => {
+      feedbackDiv.innerHTML = '<span class="success-feedback"><i class="fas fa-check-circle"></i> Message pre-filled! Chat with us on WhatsApp.</span>';
+      setTimeout(() => {
+        if(feedbackDiv.innerHTML.includes('Message pre-filled')) feedbackDiv.innerHTML = '';
+      }, 4000);
+    }, 800);
+    
+    // clear form? we keep it but optionally reset fields (better UX: keep or reset? we'll reset)
+    waForm.reset();
+    setTimeout(() => {
+      if(feedbackDiv.innerHTML.includes('Redirecting')) feedbackDiv.innerHTML = '';
+    }, 2000);
+  });
 </script>
 </body>
 </html>
